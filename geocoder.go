@@ -1,4 +1,5 @@
-// Package geocoder encapsulates API for https://tech.yandex.ru/maps/doc/geocoder/desc/concepts/About-docpage/
+// Package geocoder wraps Yandex Geocoder API.
+// It will get coordinates for a given address.
 package geocoder
 
 import (
@@ -10,37 +11,33 @@ import (
 	"strings"
 )
 
+// expected reply from API (the bit we need)
 type Reply struct {
-	Response Response
+	Response struct {
+		GeoObjectCollection struct {
+			FeatureMember []struct {
+				GeoObject struct{
+					Point struct {
+						Pos string
+					}
+				}
+			}
+		}
+	}
 }
 
-type Response struct {
-	GeoObjectCollection GeoObjectCollection
-}
-
-type GeoObjectCollection struct {
-	FeatureMember []FeatureMember
-}
-
-type FeatureMember struct {
-	GeoObject GeoObject
-}
-
-type GeoObject struct {
-	Point Point
-}
-
-type Point struct {
-	Pos string
-}
-
+// coordinates
 type Coordinates struct {
 	Latitude  float32
 	Longitude float32
 }
 
+// url of Yandex Geocoder API
+const API_URL = "http://geocode-maps.yandex.ru/1.x/?format=json&results=1&geocode="
+
+// calls Yandex Geocoder API
 func Request(address string) (Reply, error) {
-	url := "http://geocode-maps.yandex.ru/1.x/?format=json&results=1&geocode=" + address
+	url := API_URL + address
 	resp, err := http.Get(url)
 	defer resp.Body.Close()
 	if err != nil {
@@ -58,6 +55,7 @@ func Request(address string) (Reply, error) {
 	return r, nil
 }
 
+// converts address to coordinates
 func AddressToCoordinates(address string) (Coordinates, error) {
 	r, err := Request(address)
 	if err != nil {
