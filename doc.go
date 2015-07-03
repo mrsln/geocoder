@@ -1,5 +1,5 @@
 /*
-Gets coordinates for a given address.
+Geocoder will get coordinates for a given address.
 
 SUMMARY
   address := "Moscow, Kremlin"
