@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-// expected reply from API (the bit we need)
+// The expected reply from API (the bit we need)
 type Reply struct {
 	Response struct {
 		GeoObjectCollection struct {
@@ -26,16 +26,16 @@ type Reply struct {
 	}
 }
 
-// coordinates
+// Coordinates
 type Coordinates struct {
 	Latitude  float32
 	Longitude float32
 }
 
-// url of Yandex Geocoder API
+// The url of Yandex Geocoder API
 const API_URL = "http://geocode-maps.yandex.ru/1.x/?format=json&results=1&geocode="
 
-// calls Yandex Geocoder API
+// Request calls Yandex Geocoder API
 func Request(address string) (Reply, error) {
 	url := API_URL + address
 	resp, err := http.Get(url)
@@ -55,7 +55,7 @@ func Request(address string) (Reply, error) {
 	return r, nil
 }
 
-// converts address to coordinates
+// AddressToCoordinates converts address to coordinates
 func AddressToCoordinates(address string) (Coordinates, error) {
 	r, err := Request(address)
 	if err != nil {
