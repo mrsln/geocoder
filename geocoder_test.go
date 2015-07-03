@@ -16,7 +16,7 @@ func TestAddressToCoordinates(t *testing.T) {
 	}
 }
 
-func Example_AddressToCoordinates() {
+func ExampleAddressToCoordinates() {
 	const address = "Moscow, Kremlin"
 	coords, _ := AddressToCoordinates(address)
 	fmt.Printf("Coordinates for %s are: %f, %f\n", address, coords.Latitude, coords.Longitude)
