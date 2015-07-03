@@ -16,7 +16,7 @@ type Reply struct {
 	Response struct {
 		GeoObjectCollection struct {
 			FeatureMember []struct {
-				GeoObject struct{
+				GeoObject struct {
 					Point struct {
 						Pos string
 					}
