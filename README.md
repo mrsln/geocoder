@@ -1,5 +1,6 @@
 Yandex Geocoder API wrapper in GO
 =================================
+![travis](https://travis-ci.org/mrsln/geocoder.svg?branch=master)
 
 The package will get coordinates for a given address.
 ```
