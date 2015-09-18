@@ -1,4 +1,3 @@
-// Package geocoder wraps Yandex Geocoder API.
 // It will get coordinates for a given address.
 package geocoder
 

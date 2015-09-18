@@ -1,5 +1,5 @@
 /*
-Geocoder will get coordinates for a given address.
+Package geocoder is a wrapper for the Yandex Geocoder API.
 
 SUMMARY
   address := "Moscow, Kremlin"
